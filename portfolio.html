@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sivanesh S - AI & Full Stack Developer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            overflow-x: hidden;
+        }
+
+        /* Animated background particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(0, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+            50% { transform: translateY(-100px) rotate(180deg); opacity: 1; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #00ffff, #ff00ff, #ffff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.5)); }
+            to { filter: drop-shadow(0 0 40px rgba(255, 0, 255, 0.5)); }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00ffff, #ff00ff);
+            color: #000;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #00ffff;
+            color: #00ffff;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00ffff, #ff00ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            margin: 0 auto;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.1);
+        }
+
+        .skill-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #00ffff;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.2));
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+        }
+
+        .project-header {
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #00ffff;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Experience Section */
+        .experience-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            border-left: 4px solid #00ffff;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.1);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .contact-item {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            color: #00ffff;
+            margin-bottom: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Sivanesh S</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>AI & Full Stack Developer</h1>
+            <p>Crafting intelligent solutions with cutting-edge technology. Specialized in AI/ML, Data Science, and Full Stack Development.</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-grid">
+            <div class="about-image">
+                <i class="fas fa-user-astronaut"></i>
+            </div>
+            <div>
+                <h3 style="color: #00ffff; font-size: 1.8rem; margin-bottom: 1rem;">Computer Science Student & Research Enthusiast</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: rgba(255, 255, 255, 0.9);">
+                    Currently pursuing B.Tech in Computer Science with Data Science specialization at VIT Vellore (CGPA: 8.0). 
+                    As an Undergraduate Research Assistant at IIIT Guwahati, I work on cutting-edge AI models for detecting data attacks on social media.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: rgba(255, 255, 255, 0.9); margin-top: 1rem;">
+                    Passionate about leveraging AI and machine learning to solve real-world problems. I've participated in 5+ hackathons, 
+                    reaching top 10 in 3 of them, and have built impactful projects ranging from skin care detection systems to cryptocurrency platforms.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Technical Arsenal</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">R</span>
+                    <span class="skill-tag">HTML/CSS</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3><i class="fas fa-robot"></i> AI/ML & Data Science</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">TensorFlow</span>
+                    <span class="skill-tag">PyTorch</span>
+                    <span class="skill-tag">Scikit-learn</span>
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">NumPy</span>
+                    <span class="skill-tag">Matplotlib</span>
+                    <span class="skill-tag">Computer Vision</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3><i class="fas fa-server"></i> Frameworks & Tools</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Django</span>
+                    <span class="skill-tag">Express.js</span>
+                    <span class="skill-tag">FastAPI</span>
+                    <span class="skill-tag">MERN Stack</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">Azure</span>
+                    <span class="skill-tag">MongoDB</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>🔬 Multimodal Skin Care Detection</h3>
+                    <p>Advanced AI system for comprehensive skin analysis and personalized care recommendations using computer vision and deep learning.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">Computer Vision</span>
+                        <span class="tech-tag">Deep Learning</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>🎯 CareerTrix - AI Mock Interviews</h3>
+                    <p>Web application generating personalized learning roadmaps and AI-driven mock interviews for students and professionals.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">HTML/CSS</span>
+                        <span class="tech-tag">AI Logic</span>
+                        <span class="tech-tag">Python</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>💰 CryptoConnect Social Platform</h3>
+                    <p>MERN-stack application combining real-time cryptocurrency tracking with social features and secure user authentication.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">JWT</span>
+                        <span class="tech-tag">CoinGecko API</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>🚗 VV Motors Backend System</h3>
+                    <p>Backend infrastructure for Suzuki's dealership website with RESTful APIs for vehicle catalog management and booking services.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Express.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">RESTful APIs</span>
+                        <span class="tech-tag">Node.js</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title">Experience & Achievements</h2>
+        <div class="experience-item">
+            <h3 style="color: #00ffff; font-size: 1.5rem;">Undergraduate Research Assistant</h3>
+            <p style="color: #ff00ff; margin: 0.5rem 0;">IIIT Guwahati | May 2024 – Present</p>
+            <ul style="margin-left: 1rem; line-height: 1.8;">
+                <li>Collaborating with professors on research paper: AI Model for Detecting Data Attacks on Social Media</li>
+                <li>Designed ML models in Python using Scikit-learn, Pandas, NumPy, Matplotlib</li>
+                <li>Analyzed large-scale social media datasets to detect malicious patterns and misinformation</li>
+            </ul>
+        </div>
+        <div class="experience-item">
+            <h3 style="color: #00ffff; font-size: 1.5rem;">Hackathon Achievements</h3>
+            <p style="color: #ff00ff; margin: 0.5rem 0;">Multiple Competitions | 2023 – 2024</p>
+            <ul style="margin-left: 1rem; line-height: 1.8;">
+                <li>Participated in 5+ hackathons with projects in AI, web development, and social impact</li>
+                <li>Top 10 Finalist in 3 hackathons</li>
+                <li>Expertise in rapid prototyping and innovative solution development</li>
+            </ul>
+        </div>
+        <div class="experience-item">
+            <h3 style="color: #00ffff; font-size: 1.5rem;">Certifications</h3>
+            <p style="color: rgba(255, 255, 255, 0.8); line-height: 1.8;">
+                • Supervised Machine Learning – Coursera (Andrew Ng)<br>
+                • AI-900: Microsoft Azure AI Fundamentals (2024)<br>
+                • Java + Advanced DSA – IAMNEO<br>
+                • Full-Stack Web Developer – Udemy (Angela Yu)
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Let's Connect</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>sivaneshsenthilkumar@gmail.com</p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <h3>Phone</h3>
+                <p>+91 9894721522</p>
+            </div>
+            <div class="contact-item">
+                <i class="fab fa-linkedin"></i>
+                <h3>LinkedIn</h3>
+                <p>sivanesh-senthil-kumar</p>
+            </div>
+            <div class="contact-item">
+                <i class="fab fa-github"></i>
+                <h3>GitHub</h3>
+                <p>sivaneshhacker</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Create animated particles
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particles.appendChild(particle);
+            }
+        }
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 10, 10, 0.98)';
+                nav.style.boxShadow = '0 5px 20px rgba(0, 255, 255, 0.1)';
+            } else {
+                nav.style.background = 'rgba(10, 10, 10, 0.95)';
+                nav.style.boxShadow = 'none';
+            }
+        });
+        
+        // Initialize particles when page loads
+        window.addEventListener('load', createParticles);
+        
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
